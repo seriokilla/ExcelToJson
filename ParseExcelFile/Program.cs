@@ -13,12 +13,11 @@ namespace ParseExcelFile
     }
     public class Program
     {
-        static Config _config;
         public static void Main(string[] args)
         {
             if (VerifyArgs(args) == false) return;
-            ReadConfig(args[0]);
-            ProcessExcel();
+            var c = ReadConfig(args[0]);
+            ProcessExcel(c);
         }
 
        private static bool VerifyArgs(string[] args)
@@ -32,23 +31,24 @@ namespace ParseExcelFile
             return true;
         }
 
-        private static void ReadConfig(string confFilePath)
+        private static Config ReadConfig(string confFilePath)
         {
             var reader = new XmlSerializer(typeof(Config));
             var file = new StreamReader(confFilePath);
-            _config = (Config)reader.Deserialize(file);
+            var c = (Config)reader.Deserialize(file);
             file.Close();
+            return c;
         }
 
-        private static void ProcessExcel()
+        private static void ProcessExcel(Config conf)
         {
             var app = new Excel.Application();
-            var book = app.Workbooks.Open(_config.FilePath,
+            var book = app.Workbooks.Open(conf.FilePath,
                     0, true, 5, "", "", true, 
                     Excel.XlPlatform.xlWindows, "\t", false, 
                     false, 0, true, 1, 0);
 
-            var sheet = book.Worksheets[_config.SheetIndex];
+            var sheet = book.Worksheets[conf.SheetIndex];
 
             var range = sheet.UsedRange;
 
@@ -56,7 +56,7 @@ namespace ParseExcelFile
             {
                 for (var c = 1; c <= range.Columns.Count; c++)
                 {
-                    var val = range.Cells[r, c].Value2;
+                    var val = range.Cells[r, c].Value;
                     var msg = (val == null) ? "null" : val.ToString();
                     Console.WriteLine(msg);
                 }
