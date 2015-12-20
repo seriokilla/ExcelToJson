@@ -61,7 +61,6 @@ namespace ParseExcelFile
                     Excel.XlPlatform.xlWindows, "\t", false, 
                     false, 0, true, 1, 0);
 
-            //var sheet = (Excel.Worksheet)book.Worksheets.get_Item(_config.SheetIndex);
             var sheet = book.Worksheets[_config.SheetIndex];
 
             var range = sheet.UsedRange;
