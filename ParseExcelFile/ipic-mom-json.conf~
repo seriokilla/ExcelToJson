@@ -1,0 +1,29 @@
+input 
+{
+    file 
+    {
+          path => "E:/ELK/_Import/ipic-mom-json/*.json"
+          start_position => "beginning"
+    }
+}
+filter 
+{
+    mutate
+    {
+        replace => [ "message", "%{message}" ]
+        gsub => [ 'message','\n','']
+    }
+    if [message] =~ /^{.*}$/
+    {
+        json { source => message }
+    }
+}
+output {       elasticsearch {
+        action => "index"
+        hosts => ["localhost:9200"]
+        index => "ipic-mom-%{+YYYYMMddHHmm}"
+        workers => 1
+    }#	stdout { codec => rubydebug }}
+
+
+
