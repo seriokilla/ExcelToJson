@@ -88,7 +88,7 @@ namespace ParseExcelFile
 
         private static void WriteJsonToFile(Dictionary<string, string> rowdict, string outfilepath)
         {
-            var json = JsonConvert.SerializeObject(rowdict, Formatting.Indented) + Environment.NewLine;
+            var json = JsonConvert.SerializeObject(rowdict, Formatting.None) + Environment.NewLine;
             Console.Write(".");
             File.AppendAllText(outfilepath, json);
         }
