@@ -21,20 +21,7 @@ namespace ParseExcelFile
             ProcessExcel();
         }
 
-        private static void writeconfig()
-        {
-            var b = new Config()
-            {
-                FilePath = "mom.xlsx",
-                SheetIndex = 3
-            };
-            var writer = new XmlSerializer(typeof(Config));
-            var wfile = new StreamWriter(@"config.xml");
-            writer.Serialize(wfile, b);
-            wfile.Close();
-        }
-
-        private static bool VerifyArgs(string[] args)
+       private static bool VerifyArgs(string[] args)
         {
             if (args.Length != 1)
             {
