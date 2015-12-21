@@ -57,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="vision-mom-json.conf" />
+    <None Include="vision-iis-json.conf" />
+    <None Include="vision-sql-json.conf" />
     <None Include="ipic-sql-json.conf" />
     <None Include="ipic-iis-json.conf" />
     <None Include="equity-sql-json.conf" />
