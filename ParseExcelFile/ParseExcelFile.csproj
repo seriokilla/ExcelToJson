@@ -57,7 +57,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ipic-sql-json.conf" />
+    <None Include="ipic-iis-json.conf" />
+    <None Include="equity-sql-json.conf" />
+    <None Include="equity-iis-json.conf" />
+    <None Include="equity-mom-json.conf" />
     <None Include="ipic-mom-json.conf" />
+    <None Include="IPIC_MOM_Import.csv.conf" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
